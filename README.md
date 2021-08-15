@@ -1,6 +1,6 @@
-# TypeScript Express API Bootstrap (base / project starter)
+# Skeleton for Google Cloud Functions projects (base / project starter)
 
-This is a repository intended to serve as a starting point if you want to bootstrap a express API project in TypeScript.
+This is a repository intended to serve as a starting point if you want to bootstrap a google cloud function project in TypeScript.
 
 ## Features
 
