@@ -16,6 +16,7 @@ This is a repository intended to serve as a starting point if you want to bootst
 ## Recommended Links
 - [Javascript best practices](https://github.com/goldbergyoni/nodebestpractices.git)
 - [Javascript testing best practices](https://github.com/goldbergyoni/javascript-testing-best-practices.git)
+- [Google Cloud Functions deployment options](https://cloud.google.com/sdk/gcloud/reference/functions/deploy)
 ## Development
 
 ```bash

@@ -17,7 +17,7 @@
     "build:watch": "tsc --watch",
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "prettier:watch": "onchange 'src/**/*.ts' 'tests/**/*.ts' 'scripts/**/*.ts' -- prettier --write {{changed}}",
-    "deploy": "gcloud functions deploy gcp-function-test --trigger-http --runtime nodejs14 --entry-point drivers"
+    "deploy": "yarn test && yarn build && gcloud functions deploy gcp-function-test --trigger-http --runtime nodejs14 --entry-point main"
   },
   "keywords": [
     "javascript",
@@ -27,7 +27,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-push": "npm run lint",
+      "pre-commit": "yarn lint",
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
   },
