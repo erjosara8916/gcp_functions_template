@@ -21,7 +21,7 @@ steps:
             --trigger-http --allow-unauthenticated --runtime nodejs14 \
             --entry-point http.simple.helloWorldHttp \
             --set-env-vars \
-            GCP_PROJECT_ID=${$PROJECT_ID},\
+            GCP_PROJECT_ID=${PROJECT_ID},\
             GCP_PUBSUB_TOPIC_CLIENT_MESSAGES=${_GCP_PS_TOPIC}
           ;;
           ${_ENV_PREFIX}-${_GCP_PS_TOPIC}-test-v*)
