@@ -1,0 +1,20 @@
+steps:
+  - name: "gcr.io/cloud-builders/yarn"
+    args: ["install"]
+    dir: "./"
+
+  - name: "gcr.io/cloud-builders/yarn"
+    args: ["test"]
+    dir: "./"
+
+  - name: "gcr.io/cloud-builders/yarn"
+    args: ["build"]
+    dir: "./"
+
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - '-c'
+      - |-
+        gcloud functions deploy gcp-function-ci-cd --trigger-http --runtime nodejs14 --entry-point main
+    dir: ./
+    entrypoint: bash

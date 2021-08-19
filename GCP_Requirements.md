@@ -5,3 +5,4 @@ https://console.developers.google.com/apis/api/cloudbuild.googleapis.com/overvie
 - Cloud Build API
   - Grant Access To Google Cloud Functions
   - Grant Access To Service Accounts
+- Cloud Resource Manager API
