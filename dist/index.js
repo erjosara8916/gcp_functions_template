@@ -1,32 +1,25 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.main = void 0;
-var HttpStatus;
-(function (HttpStatus) {
-    HttpStatus[HttpStatus["SUCCESS"] = 200] = "SUCCESS";
-    HttpStatus[HttpStatus["BAD_REQUEST"] = 400] = "BAD_REQUEST";
-    HttpStatus[HttpStatus["SERVER_ERROR"] = 500] = "SERVER_ERROR";
-})(HttpStatus || (HttpStatus = {}));
-var existMessage = function (message) {
-    if (!message) {
-        var error = { status: HttpStatus.BAD_REQUEST, error: "message not found" };
-        throw error;
-    }
-};
-var main = function (request, response) {
-    try {
-        var message = (request.query || request.body).message;
-        existMessage(message);
-        var result = {
-            messageReceived: message,
-        };
-        return response.status(HttpStatus.SUCCESS).json(result);
-    }
-    catch (err) {
-        var error = err;
-        console.info(error.error);
-        return response.status(error.status).json(error);
-    }
-};
-exports.main = main;
+exports.pubsub = exports.http = void 0;
+exports.http = __importStar(require("./functions/http"));
+exports.pubsub = __importStar(require("./functions/pubsub"));
 //# sourceMappingURL=index.js.map

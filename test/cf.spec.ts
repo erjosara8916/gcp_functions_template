@@ -4,16 +4,23 @@ import { app } from '../scripts/app';
 
 describe('Hello World', () => {
   describe('GET /', () => {
+    const endpoint = `http/simple/helloWorldHttp`;
+
     it('return status 200: when message is provided as query param', () => {
-      return request(app).get(`/?message=Hello`).expect(200);
+      return request(app).get(`/${endpoint}?message=Hello`).expect(200);
     });
 
     it('return status 200: when message is provided as body data', () => {
-      return request(app).get(`/?message=Hello`).expect(200);
+      return request(app)
+        .post(`/${endpoint}`)
+        .send({ message: 'hello' })
+        .set('Accept', 'application/json')
+        .expect(200);
     });
 
     it('return status 400: when message is not provided', () => {
-      return request(app).get(`/`).expect(400);
+      console.log(endpoint);
+      return request(app).get(`/${endpoint}`).expect(400);
     });
   });
 });

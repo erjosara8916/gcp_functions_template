@@ -15,6 +15,20 @@ steps:
     args:
       - '-c'
       - |-
-        gcloud functions deploy gcp-function-ci-cd --trigger-http --runtime nodejs14 --entry-point main
+        case $TAG_NAME in
+          ${_ENV_PREFIX}-pubsub-redirect-v*)
+            gcloud functions deploy ${_ENV_PREFIX}-send-message-to-pubsub \
+            --trigger-http --allow-unauthenticated --runtime nodejs14 \
+            --entry-point http.simple.helloWorldHttp \
+            --set-env-vars \
+            GCP_PROJECT_ID=${$PROJECT_ID},\
+            GCP_PUBSUB_TOPIC_CLIENT_MESSAGES=${_GCP_PS_TOPIC}
+          ;;
+          ${_ENV_PREFIX}-${_GCP_PS_TOPIC}-test-v*)
+            gcloud functions deploy ${_ENV_PREFIX}-${_GCP_PS_TOPIC} \
+            --trigger-topic client-messages --runtime nodejs14 \
+            --entry-point pubsub.simple.helloWorldPubSub
+        ;;
+        esac
     dir: ./
     entrypoint: bash

@@ -17,7 +17,8 @@
     "build:watch": "tsc --watch",
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "prettier:watch": "onchange 'src/**/*.ts' 'tests/**/*.ts' 'scripts/**/*.ts' -- prettier --write {{changed}}",
-    "deploy": "yarn test && yarn build && gcloud functions deploy gcp-function-test --trigger-http --runtime nodejs14 --entry-point main"
+    "deploy:helloHttp": "yarn test && yarn build && gcloud functions deploy send-message-to-pubsub --trigger-http --allow-unauthenticated --runtime nodejs14 --entry-point http.simple.helloWorldHttp --set-env-vars GCP_PROJECT_ID=serverless-322923,GCP_PUBSUB_TOPIC_CLIENT_MESSAGES=client-messages",
+    "deploy:helloPubSub": "yarn test && yarn build && gcloud functions deploy test-pubsub --trigger-topic client-messages --runtime nodejs14 --entry-point pubsub.simple.helloWorldPubSub"
   },
   "keywords": [
     "javascript",
@@ -58,7 +59,9 @@
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.3.5"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@google-cloud/pubsub": "^2.16.5"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
