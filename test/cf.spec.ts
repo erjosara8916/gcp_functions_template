@@ -8,12 +8,18 @@ describe('Hello World', () => {
       return request(app).get(`/?message=Hello`).expect(200);
     });
 
-    it('return status 200: when message is provided as body data', () => {
-      return request(app).get(`/?message=Hello`).expect(200);
-    });
-
     it('return status 400: when message is not provided', () => {
       return request(app).get(`/`).expect(400);
     });
   });
+
+  describe('POST /', () => {
+    it('return status 200: when message is provided as body data', () => {
+      return request(app)
+        .post(`/`)
+        .send({ message: 'hello' })
+        .set('Accept', 'application/json')
+        .expect(200);
+    });
+  })
 });

@@ -15,7 +15,7 @@ var existMessage = function (message) {
 };
 var main = function (request, response) {
     try {
-        var message = (request.query || request.body).message;
+        var message = request.query.message || request.body.message;
         existMessage(message);
         var result = {
             messageReceived: message,
@@ -24,7 +24,6 @@ var main = function (request, response) {
     }
     catch (err) {
         var error = err;
-        console.info(error.error);
         return response.status(error.status).json(error);
     }
 };

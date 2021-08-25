@@ -20,7 +20,7 @@ const existMessage = (message: any): void => {
 
 export const main = (request: Request, response: Response): Response => {
   try {
-    const { message } = request.query || request.body;
+    const message = request.query.message || request.body.message;
 
     existMessage(message);
 
