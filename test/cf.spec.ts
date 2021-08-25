@@ -1,6 +1,11 @@
+import dotenv from 'dotenv';
 import request from 'supertest';
 
 import { app } from '../scripts/app';
+
+beforeAll(() => {
+  dotenv.config();
+});
 
 describe('Hello World', () => {
   describe('GET /', () => {
