@@ -24,9 +24,9 @@ steps:
             GCP_PROJECT_ID=${PROJECT_ID},\
             GCP_PUBSUB_TOPIC_CLIENT_MESSAGES=${_GCP_PS_TOPIC}
           ;;
-          ${_ENV_PREFIX}-${_GCP_PS_TOPIC}-test-v*)
+          ${_ENV_PREFIX}-${_GCP_PS_TOPIC}-v*)
             gcloud functions deploy ${_ENV_PREFIX}-${_GCP_PS_TOPIC} \
-            --trigger-topic client-messages --runtime nodejs14 \
+            --trigger-topic ${_GCP_PS_TOPIC} --runtime nodejs14 \
             --entry-point pubsub.simple.helloWorldPubSub
         ;;
         esac
